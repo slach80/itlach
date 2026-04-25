@@ -59,7 +59,8 @@
     .ph-sub { font-size: 1.05rem; font-weight: 300; color: rgba(250,247,242,0.55); max-width: 560px; line-height: 1.65; }
 
     /* FILTER BAR */
-    .filter-bar { background: var(--bg-2); border-bottom: 1px solid var(--border-gold); padding: 14px clamp(20px,5vw,60px); position: sticky; top: var(--nav-h); z-index: 100; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .filter-bar { background: var(--bg-2); border-bottom: 1px solid var(--border-gold); padding: 0; position: sticky; top: var(--nav-h); z-index: 100; }
+    .filter-bar-inner { max-width: var(--max); margin: 0 auto; padding: 14px clamp(20px,5vw,60px); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
     .filter-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
     .filter-btn { padding: 6px 14px; border: 1px solid var(--border-gold); border-radius: 3px; font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: var(--bg-card); cursor: pointer; transition: all 0.2s; }
     .filter-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
@@ -108,7 +109,7 @@
     .reveal-d3 { transition-delay: 0.24s; }
 
     @media (max-width: 480px) {
-      .filter-bar { gap: 8px; }
+      .filter-bar-inner { gap: 8px; }
       .filter-btn { font-size: 0.58rem; padding: 5px 10px; }
       .filter-sep { display: none; }
       .filter-label { width: 100%; }
@@ -181,17 +182,19 @@
 </div>
 
 <div class="filter-bar" id="filterBar">
-  <span class="filter-label">Type:</span>
-  <button class="filter-btn active" data-filter="type" data-value="all">All</button>
-  <button class="filter-btn" data-filter="type" data-value="conservatory">Conservatory</button>
-  <button class="filter-btn" data-filter="type" data-value="university">University</button>
-  <div class="filter-sep"></div>
-  <span class="filter-label">Region:</span>
-  <button class="filter-btn active" data-filter="region" data-value="all">All</button>
-  <button class="filter-btn" data-filter="region" data-value="midwest">Midwest</button>
-  <button class="filter-btn" data-filter="region" data-value="southeast">Southeast</button>
-  <button class="filter-btn" data-filter="region" data-value="west">West Coast</button>
-  <button class="filter-btn" data-filter="region" data-value="northeast">Northeast</button>
+  <div class="filter-bar-inner">
+    <span class="filter-label">Type:</span>
+    <button class="filter-btn active" data-filter="type" data-value="all">All</button>
+    <button class="filter-btn" data-filter="type" data-value="conservatory">Conservatory</button>
+    <button class="filter-btn" data-filter="type" data-value="university">University</button>
+    <div class="filter-sep"></div>
+    <span class="filter-label">Region:</span>
+    <button class="filter-btn active" data-filter="region" data-value="all">All</button>
+    <button class="filter-btn" data-filter="region" data-value="midwest">Midwest</button>
+    <button class="filter-btn" data-filter="region" data-value="southeast">Southeast</button>
+    <button class="filter-btn" data-filter="region" data-value="west">West Coast</button>
+    <button class="filter-btn" data-filter="region" data-value="northeast">Northeast</button>
+  </div>
 </div>
 
 <div class="content-wrap" id="content">
