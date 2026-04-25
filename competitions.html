@@ -30,8 +30,8 @@
     .nav-links > li > a:hover { color: var(--accent); }
     #nav.scrolled .nav-links > li > a { color: var(--muted); }
     #nav.scrolled .nav-links > li > a:hover { color: var(--accent-dark); }
-    .nav-drop { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--ivory); border: 1px solid var(--border-gold); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.14); min-width: 190px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
-    .nav-drop::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+    .nav-drop { position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%) translateY(-2px); background: var(--ivory); border: 1px solid var(--border-gold); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.14); min-width: 190px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
+    .nav-drop::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
     .nav-links > li:hover .nav-drop { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-drop a { display: block; padding: 8px 18px; font-family: 'Josefin Sans', sans-serif; font-size: 0.67rem; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.15s, background 0.15s; }
     .nav-drop a:hover { color: var(--accent-dark); background: var(--accent-lo); }
@@ -165,23 +165,55 @@
 
 <div class="content-wrap">
 
-  <div class="todo-banner reveal">
-    <div class="todo-icon">🏆</div>
-    <div class="todo-text"><strong>Competition history to be added.</strong> As Isaac enters competitions, results and awards will be listed here. The target competitions section below identifies key events to pursue in the coming years.</div>
-  </div>
-
   <!-- RESULTS -->
   <div style="margin-bottom:52px;">
     <div class="section-label">Past Results</div>
-    <h2 class="section-title">Competition <em>History</em></h2>
-    <p class="section-sub">Results will be added as Isaac competes. Currently 7th grade — building toward first formal competitions.</p>
+    <h2 class="section-title">Competition &amp; Festival <em>History</em></h2>
+    <p class="section-sub">Isaac's record of formal competitions, festivals, and adjudicated performances.</p>
     <div class="comp-grid">
+
       <div class="comp-card past reveal">
-        <div class="comp-year">— Todo —</div>
-        <div class="comp-name">First Competition</div>
-        <div class="comp-org">TBD</div>
-        <div class="comp-result"><em>Result to be added</em></div>
+        <div class="comp-year">2025</div>
+        <div class="comp-name">NWMO Sonatina-Sonata Festival</div>
+        <div class="comp-org">Northwest Missouri State University</div>
+        <div class="comp-result">Performed Mozart Sonata K. 545, Mvt. I · <a href="https://www.youtube.com/watch?v=dMuBggHA0hs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
       </div>
+
+      <div class="comp-card past reveal reveal-d1">
+        <div class="comp-year">2025</div>
+        <div class="comp-name">Spring Recital — Bellus Music Studio</div>
+        <div class="comp-org">Bellus Music Studio · Eva Peng</div>
+        <div class="comp-result">Full 9-minute solo recital performance · <a href="https://www.youtube.com/watch?v=ZPhBRjsL7fw" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+      </div>
+
+      <div class="comp-card past reveal reveal-d2">
+        <div class="comp-year">2024</div>
+        <div class="comp-name">NFMC Federation Music Festival</div>
+        <div class="comp-org">National Federation of Music Clubs</div>
+        <div class="comp-result">Adjudicated solo performance · <a href="https://www.youtube.com/watch?v=VOLE6iQaRDs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+      </div>
+
+      <div class="comp-card past reveal">
+        <div class="comp-year">2024</div>
+        <div class="comp-name">NWMO Sonatina-Sonata Festival</div>
+        <div class="comp-org">Northwest Missouri State University</div>
+        <div class="comp-result">Performed Haydn · <a href="https://www.youtube.com/watch?v=ekDuLvPUotc" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+      </div>
+
+      <div class="comp-card past reveal reveal-d1">
+        <div class="comp-year">2024</div>
+        <div class="comp-name">State Piano Solo — Beethoven &amp; Bach</div>
+        <div class="comp-org">Kansas City area adjudicated festival</div>
+        <div class="comp-result">Performed Beethoven Bagatelle Op. 33 No. 6 &amp; Bach · <a href="https://www.youtube.com/watch?v=A64hynZl80o" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+      </div>
+
+      <div class="comp-card past reveal reveal-d2">
+        <div class="comp-year">2022</div>
+        <div class="comp-name">District Audition — KC Piano</div>
+        <div class="comp-org">Kansas City Piano · September 2022</div>
+        <div class="comp-result">First formal adjudicated audition · <a href="https://www.youtube.com/watch?v=wgLD8gvsVrs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+      </div>
+
     </div>
   </div>
 

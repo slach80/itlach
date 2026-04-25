@@ -30,8 +30,8 @@
     .nav-links > li > a:hover { color: var(--accent); }
     #nav.scrolled .nav-links > li > a { color: var(--muted); }
     #nav.scrolled .nav-links > li > a:hover { color: var(--accent-dark); }
-    .nav-drop { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--ivory); border: 1px solid var(--border-gold); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.14); min-width: 190px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
-    .nav-drop::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+    .nav-drop { position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%) translateY(-2px); background: var(--ivory); border: 1px solid var(--border-gold); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.14); min-width: 190px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
+    .nav-drop::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
     .nav-links > li:hover .nav-drop { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-drop a { display: block; padding: 8px 18px; font-family: 'Josefin Sans', sans-serif; font-size: 0.67rem; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.15s, background 0.15s; }
     .nav-drop a:hover { color: var(--accent-dark); background: var(--accent-lo); }
@@ -170,13 +170,24 @@
   <div class="rep-section reveal">
     <div class="section-label">Active Study</div>
     <h2 class="section-title">Current <em>Repertoire</em></h2>
-    <p class="section-sub">Works Isaac is actively studying with Eva Peng — to be updated each semester.</p>
+    <p class="section-sub">Works Isaac is actively studying with Eva Peng at Bellus Music Studio — updated each semester.</p>
 
     <div class="composer-block">
-      <div class="composer-name">— Todo — <span class="composer-era">Composer · Era</span></div>
+      <div class="composer-name">Frédéric Chopin <span class="composer-era">Romantic · 1810–1849</span></div>
       <div class="piece-list">
         <div class="piece-row">
-          <span class="piece-title"><em>Current pieces to be added by Eva Peng / family</em></span>
+          <span class="piece-title"><em>Nocturne in F Minor, Op. 55 No. 1</em></span>
+          <span class="piece-status s-current">Current</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=hUdjE0-8VNM" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">— Todo — <span class="composer-era">Current pieces — ask Eva Peng for full list</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>Additional current works to be added</em></span>
           <span class="piece-status s-todo">Todo</span>
           <span class="piece-year">—</span>
         </div>
@@ -187,19 +198,107 @@
   <!-- LEARNED REPERTOIRE -->
   <div class="rep-section reveal reveal-d1">
     <div class="section-label">Previously Learned</div>
-    <h2 class="section-title">Pieces <em>Mastered</em></h2>
-    <p class="section-sub">Works Isaac has brought to performance level.</p>
+    <h2 class="section-title">Pieces <em>Performed</em></h2>
+    <p class="section-sub">Works Isaac has brought to public performance level — sourced from recital and festival recordings.</p>
 
     <div class="composer-block">
-      <div class="composer-name">— Todo — <span class="composer-era">To be filled in</span></div>
+      <div class="composer-name">Johann Sebastian Bach <span class="composer-era">Baroque · 1685–1750</span></div>
       <div class="piece-list">
         <div class="piece-row">
-          <span class="piece-title"><em>Past repertoire to be added</em></span>
-          <span class="piece-status s-todo">Todo</span>
-          <span class="piece-year">—</span>
+          <span class="piece-title"><em>Invention in C Major, BWV 772</em></span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=LKNVpxeHUUE" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+        <div class="piece-row">
+          <span class="piece-title">State Piano Solo — Bach selection</span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=A64hynZl80o" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
         </div>
       </div>
     </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Wolfgang Amadeus Mozart <span class="composer-era">Classical · 1756–1791</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>Piano Sonata in C Major, K. 545</em> — Mvt. I (Allegro)</span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=dMuBggHA0hs" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+        <div class="piece-row">
+          <span class="piece-title"><em>Piano Sonata in C Major, K. 545</em> — Full</span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=sQiPxXvgOMI" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Ludwig van Beethoven <span class="composer-era">Classical / Romantic · 1770–1827</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>Bagatelle in D Major, Op. 33 No. 6</em></span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=vfKrEnh59L4" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Franz Joseph Haydn <span class="composer-era">Classical · 1732–1809</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title">Haydn — NWMO Sonatina-Sonata Festival selection</span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=ekDuLvPUotc" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Friedrich Kuhlau <span class="composer-era">Classical / Early Romantic · 1786–1832</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>Piano Sonatina in C Major, Op. 20 No. 1</em> — I. Allegro</span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=wttsojU-yC8" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Muzio Clementi <span class="composer-era">Classical · 1752–1832</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>Sonatina No. 1</em> — 3 Movements</span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=1WDuma53cWE" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Friedrich Burgmüller <span class="composer-era">Romantic · 1806–1874</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>The Swallow</em> (L'hirondelle), Op. 100</span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=ATe1y72m-jo" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Anton Diabelli <span class="composer-era">Classical / Romantic · 1781–1858</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>Rondino</em> — Piano Duet (with Charles)</span>
+          <span class="piece-status s-learned">Learned</span>
+          <span class="piece-year"><a href="https://www.youtube.com/watch?v=vdFUcwPEWxM" target="_blank" rel="noopener" style="color:var(--accent-dark);font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;">Watch ↗</a></span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- TARGET REPERTOIRE -->
@@ -252,6 +351,11 @@
           <span class="piece-title">Piano Sonata No. 14 in C♯ Minor, Op. 27 No. 2 <em>("Moonlight")</em></span>
           <span class="piece-status s-target">Target</span>
           <span class="piece-year">1801</span>
+        </div>
+        <div class="piece-row">
+          <span class="piece-title">Piano Sonata No. 17 in D Minor, Op. 31 No. 2 <em>("Tempest")</em></span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">1802</span>
         </div>
       </div>
     </div>
