@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isaac Lach — Repertoire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg:#f9f6f0; --bg-2:#f2ede4; --bg-card:#ffffff; --ivory:#faf7f2;
+      --accent:#c9a84c; --accent-dark:#8a6a1a; --accent-lo:rgba(201,168,76,0.10);
+      --ebony:#1a1208; --text:#1a1208; --muted:#7a6e5f; --border:rgba(0,0,0,0.08); --border-gold:rgba(201,168,76,0.30);
+      --nav-h:72px; --r:10px; --max:1180px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(20px,5vw,60px); background: rgba(13,10,7,0.94); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(201,168,76,0.12); transition: background 0.4s, box-shadow 0.4s; }
+    #nav.scrolled { background: rgba(249,246,240,0.97); border-bottom-color: var(--border-gold); box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ivory); text-decoration: none; flex-shrink: 0; transition: color 0.4s; }
+    .nav-logo em { color: var(--accent); font-style: italic; }
+    #nav.scrolled .nav-logo { color: var(--ebony); }
+    #nav.scrolled .nav-logo em { color: var(--accent-dark); }
+    .nav-links { display: flex; gap: clamp(14px,2vw,28px); list-style: none; align-items: center; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a { color: rgba(255,255,255,0.65); text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap; padding: 4px 0; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .nav-links > li > a:hover { color: var(--accent); }
+    #nav.scrolled .nav-links > li > a { color: var(--muted); }
+    #nav.scrolled .nav-links > li > a:hover { color: var(--accent-dark); }
+    .nav-drop { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--ivory); border: 1px solid var(--border-gold); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.14); min-width: 190px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
+    .nav-drop::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+    .nav-links > li:hover .nav-drop { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-drop a { display: block; padding: 8px 18px; font-family: 'Josefin Sans', sans-serif; font-size: 0.67rem; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.15s, background 0.15s; }
+    .nav-drop a:hover { color: var(--accent-dark); background: var(--accent-lo); }
+    .nav-cta { background: var(--accent); color: var(--ebony); border: none; border-radius: 4px; padding: 9px 20px; font-family: 'Josefin Sans', sans-serif; font-size: 0.67rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: #dbb84e; }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: var(--ivory); border-radius: 2px; }
+    #nav.scrolled .nav-burger span { background: var(--ebony); }
+    .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(13,10,7,0.97); backdrop-filter: blur(18px); padding: 20px clamp(20px,5vw,60px) 28px; z-index: 199; }
+    .nav-mobile.open { display: block; }
+    .nav-mobile-group { margin-bottom: 18px; }
+    .nav-mobile-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .nav-mobile a { display: block; padding: 7px 0; font-family: 'Josefin Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    @media (max-width: 960px) { .nav-links, .nav-cta { display: none; } .nav-burger { display: flex; } }
+
+    .page-header { padding: calc(var(--nav-h) + 48px) clamp(20px,5vw,60px) 44px; background: var(--ebony); border-bottom: 2px solid var(--accent); }
+    .page-header-inner { max-width: var(--max); margin: 0 auto; }
+    .ph-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .ph-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+    .ph-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--ivory); margin-bottom: 12px; }
+    .ph-title em { font-style: italic; color: var(--accent); }
+    .ph-sub { font-size: 1.05rem; font-weight: 300; color: rgba(250,247,242,0.55); max-width: 560px; line-height: 1.65; }
+
+    .content-wrap { max-width: var(--max); margin: 0 auto; padding: 52px clamp(20px,5vw,60px); }
+
+    .section-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .section-title em { font-style: italic; color: var(--accent-dark); }
+    .section-sub { font-size: 1rem; font-weight: 300; color: var(--muted); max-width: 520px; line-height: 1.65; margin-bottom: 32px; }
+
+    .rep-section { margin-bottom: 56px; }
+
+    /* COMPOSER GROUPS */
+    .composer-block { margin-bottom: 36px; }
+    .composer-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; font-style: italic; color: var(--text); margin-bottom: 4px; padding-bottom: 10px; border-bottom: 1px solid var(--border-gold); display: flex; align-items: baseline; justify-content: space-between; }
+    .composer-era { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+    .piece-list { display: flex; flex-direction: column; gap: 1px; margin-top: 2px; }
+    .piece-row { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: center; padding: 12px 14px; border-radius: 6px; transition: background 0.15s; }
+    .piece-row:hover { background: var(--accent-lo); }
+    .piece-title { font-size: 1rem; font-weight: 400; color: var(--text); }
+    .piece-title em { font-style: italic; }
+    .piece-status { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 3px 9px; border-radius: 3px; white-space: nowrap; }
+    .s-current  { background: rgba(46,125,50,0.10); color: #2e7d32; border: 1px solid rgba(46,125,50,0.22); }
+    .s-learned  { background: var(--accent-lo); color: var(--accent-dark); border: 1px solid var(--border-gold); }
+    .s-target   { background: rgba(0,80,144,0.08); color: #005090; border: 1px solid rgba(0,80,144,0.18); }
+    .s-todo     { background: var(--bg-2); color: var(--muted); border: 1px solid var(--border); }
+    .piece-year { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; color: var(--muted); white-space: nowrap; }
+
+    @media (max-width: 600px) { .piece-row { grid-template-columns: 1fr auto; } .piece-year { display: none; } }
+
+    /* LEGEND */
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; padding: 16px 20px; background: var(--bg-2); border-radius: var(--r); border: 1px solid var(--border-gold); }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+
+    footer { background: var(--ebony); padding: 32px clamp(20px,5vw,60px); text-align: center; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; font-style: italic; color: var(--ivory); margin-bottom: 8px; }
+    .footer-logo em { color: var(--accent); }
+    .footer-copy { font-size: 0.85rem; color: rgba(250,247,242,0.25); font-style: italic; }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html">Isaac <em>Lach</em></a>
+  <ul class="nav-links">
+    <li>
+      <a href="index.html">Isaac ▾</a>
+      <div class="nav-drop">
+        <a href="index.html#stats">At a Glance</a>
+        <a href="index.html#journey">Musical Journey</a>
+        <a href="index.html#highlights">Recordings</a>
+        <a href="index.html#academics">Academics</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Admissions ▾</a>
+      <div class="nav-drop">
+        <a href="schools.html">School Analysis</a>
+        <a href="map.html">School Map</a>
+        <a href="scholarships.html">Scholarships</a>
+        <a href="competitions.html">Competitions</a>
+        <a href="repertoire.html">Repertoire</a>
+        <a href="testprep.html">Test Prep</a>
+      </div>
+    </li>
+    <a class="nav-cta" href="index.html#contact">Contact Us</a>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <div class="nav-mobile-group">
+    <div class="nav-mobile-label">Isaac</div>
+    <a href="index.html#stats">At a Glance</a>
+    <a href="index.html#journey">Musical Journey</a>
+    <a href="index.html#highlights">Recordings</a>
+    <a href="index.html#academics">Academics</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="nav-mobile-group">
+    <div class="nav-mobile-label">Admissions</div>
+    <a href="schools.html">School Analysis</a>
+    <a href="map.html">School Map</a>
+    <a href="scholarships.html">Scholarships</a>
+    <a href="competitions.html">Competitions</a>
+    <a href="repertoire.html">Repertoire</a>
+    <a href="testprep.html">Test Prep</a>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="ph-label">Repertoire</div>
+    <h1 class="ph-title">Pieces &amp; <em>Works</em></h1>
+    <p class="ph-sub">Isaac's repertoire — current works in progress, pieces already learned, and target works for future development. Updated by Eva Peng and the Lach family.</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="legend">
+    <div class="legend-item"><span class="piece-status s-current">Current</span> In active study</div>
+    <div class="legend-item"><span class="piece-status s-learned">Learned</span> Performance-ready</div>
+    <div class="legend-item"><span class="piece-status s-target">Target</span> Planned future work</div>
+    <div class="legend-item"><span class="piece-status s-todo">— Todo —</span> To be added</div>
+  </div>
+
+  <!-- CURRENT REPERTOIRE -->
+  <div class="rep-section reveal">
+    <div class="section-label">Active Study</div>
+    <h2 class="section-title">Current <em>Repertoire</em></h2>
+    <p class="section-sub">Works Isaac is actively studying with Eva Peng — to be updated each semester.</p>
+
+    <div class="composer-block">
+      <div class="composer-name">— Todo — <span class="composer-era">Composer · Era</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>Current pieces to be added by Eva Peng / family</em></span>
+          <span class="piece-status s-todo">Todo</span>
+          <span class="piece-year">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEARNED REPERTOIRE -->
+  <div class="rep-section reveal reveal-d1">
+    <div class="section-label">Previously Learned</div>
+    <h2 class="section-title">Pieces <em>Mastered</em></h2>
+    <p class="section-sub">Works Isaac has brought to performance level.</p>
+
+    <div class="composer-block">
+      <div class="composer-name">— Todo — <span class="composer-era">To be filled in</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>Past repertoire to be added</em></span>
+          <span class="piece-status s-todo">Todo</span>
+          <span class="piece-year">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARGET REPERTOIRE -->
+  <div class="rep-section reveal reveal-d2">
+    <div class="section-label">Future Goals</div>
+    <h2 class="section-title">Target <em>Repertoire</em></h2>
+    <p class="section-sub">Major works to develop toward for auditions, competitions, and conservatory admissions. Listed by composer and era — to be refined by Eva Peng.</p>
+
+    <div class="composer-block">
+      <div class="composer-name">Johann Sebastian Bach <span class="composer-era">Baroque · 1685–1750</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title"><em>Well-Tempered Clavier</em>, Book I — Prelude &amp; Fugue selection</span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">~1722</span>
+        </div>
+        <div class="piece-row">
+          <span class="piece-title"><em>French Suites</em> — selected movements</span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">~1722</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Wolfgang Amadeus Mozart <span class="composer-era">Classical · 1756–1791</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title">Piano Sonata in C Major, K. 330</span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">1783</span>
+        </div>
+        <div class="piece-row">
+          <span class="piece-title">Piano Sonata in A Minor, K. 310</span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">1778</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Ludwig van Beethoven <span class="composer-era">Classical / Romantic · 1770–1827</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title">Piano Sonata No. 8 in C Minor, Op. 13 <em>("Pathétique")</em></span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">1798</span>
+        </div>
+        <div class="piece-row">
+          <span class="piece-title">Piano Sonata No. 14 in C♯ Minor, Op. 27 No. 2 <em>("Moonlight")</em></span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">1801</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer-block">
+      <div class="composer-name">Frédéric Chopin <span class="composer-era">Romantic · 1810–1849</span></div>
+      <div class="piece-list">
+        <div class="piece-row">
+          <span class="piece-title">Nocturne in E-flat Major, Op. 9 No. 2</span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">1832</span>
+        </div>
+        <div class="piece-row">
+          <span class="piece-title">Ballade No. 1 in G Minor, Op. 23</span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">1836</span>
+        </div>
+        <div class="piece-row">
+          <span class="piece-title">Études, Op. 10 — selection (audition standard)</span>
+          <span class="piece-status s-target">Target</span>
+          <span class="piece-year">1833</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Isaac <em>Lach</em></div>
+  <p class="footer-copy">Classical Piano · Kansas City, MO · Class of 2031</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  document.addEventListener('click', (e) => { if (!burger.contains(e.target) && !mobileMenu.contains(e.target)) mobileMenu.classList.remove('open'); });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

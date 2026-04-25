@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isaac Lach — School Map | Piano Programs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg:          #f9f6f0;
+      --bg-2:        #f2ede4;
+      --bg-card:     #ffffff;
+      --ivory:       #faf7f2;
+      --accent:      #c9a84c;
+      --accent-dark: #8a6a1a;
+      --accent-lo:   rgba(201,168,76,0.10);
+      --accent-md:   rgba(201,168,76,0.22);
+      --ebony:       #1a1208;
+      --text:        #1a1208;
+      --muted:       #7a6e5f;
+      --border:      rgba(0,0,0,0.08);
+      --border-gold: rgba(201,168,76,0.30);
+      --nav-h:       72px;
+      --r:           10px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 60px);
+      background: rgba(13,10,7,0.94); backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    #nav.scrolled { background: rgba(249,246,240,0.97); border-bottom-color: var(--border-gold); box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ivory); text-decoration: none; flex-shrink: 0; transition: color 0.4s; }
+    .nav-logo em { color: var(--accent); font-style: italic; }
+    #nav.scrolled .nav-logo { color: var(--ebony); }
+    #nav.scrolled .nav-logo em { color: var(--accent-dark); }
+    .nav-links { display: flex; gap: clamp(14px, 2vw, 28px); list-style: none; align-items: center; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a { color: rgba(255,255,255,0.65); text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap; padding: 4px 0; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .nav-links > li > a:hover { color: var(--accent); }
+    #nav.scrolled .nav-links > li > a { color: var(--muted); }
+    #nav.scrolled .nav-links > li > a:hover { color: var(--accent-dark); }
+    .nav-drop { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--ivory); border: 1px solid var(--border-gold); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.14); min-width: 190px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
+    .nav-drop::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+    .nav-links > li:hover .nav-drop { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-drop a { display: block; padding: 8px 18px; font-family: 'Josefin Sans', sans-serif; font-size: 0.67rem; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.15s, background 0.15s; }
+    .nav-drop a:hover { color: var(--accent-dark); background: var(--accent-lo); }
+    .nav-cta { background: var(--accent); color: var(--ebony); border: none; border-radius: 4px; padding: 9px 20px; font-family: 'Josefin Sans', sans-serif; font-size: 0.67rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: #dbb84e; }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: var(--ivory); border-radius: 2px; transition: background 0.3s; }
+    #nav.scrolled .nav-burger span { background: var(--ebony); }
+    .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(13,10,7,0.97); backdrop-filter: blur(18px); padding: 20px clamp(20px,5vw,60px) 28px; z-index: 199; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    .nav-mobile.open { display: block; }
+    .nav-mobile-group { margin-bottom: 18px; }
+    .nav-mobile-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .nav-mobile a { display: block; padding: 7px 0; font-family: 'Josefin Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    @media (max-width: 960px) { .nav-links, .nav-cta { display: none; } .nav-burger { display: flex; } }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: calc(var(--nav-h) + 40px) clamp(20px,5vw,60px) 36px;
+      background: var(--ebony);
+      border-bottom: 2px solid var(--accent);
+    }
+    .page-header-inner { max-width: 1180px; margin: 0 auto; }
+    .ph-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .ph-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+    .ph-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: var(--ivory); }
+    .ph-title em { font-style: italic; color: var(--accent); }
+
+    /* FILTER BAR */
+    .filter-bar {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 14px clamp(20px,5vw,60px);
+      position: sticky;
+      top: var(--nav-h);
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+    .filter-btn {
+      padding: 6px 14px;
+      border: 1px solid var(--border-gold);
+      border-radius: 3px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
+    .filter-btn.active { background: var(--accent); color: var(--ebony); border-color: var(--accent); }
+    .filter-sep { width: 1px; height: 24px; background: var(--border-gold); margin: 0 4px; }
+
+    /* MAP LAYOUT */
+    .map-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      height: calc(100vh - var(--nav-h) - 52px - 52px);
+      min-height: 500px;
+    }
+
+    /* SIDEBAR */
+    .map-sidebar {
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-gold);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .sidebar-count {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .sidebar-count span { color: var(--accent-dark); }
+    .sidebar-region {
+      padding: 10px 20px 4px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+    }
+    .sidebar-item {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .sidebar-item:hover { background: var(--accent-lo); }
+    .sidebar-item.active { background: var(--accent-lo); border-left: 3px solid var(--accent); }
+    .si-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .si-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .si-meta {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    /* MAP */
+    #map { z-index: 1; flex: 1; }
+
+    /* Popup */
+    .leaflet-popup-content-wrapper {
+      border-radius: 8px !important;
+      border: 1px solid var(--border-gold) !important;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12) !important;
+      font-family: 'Cormorant Garamond', serif !important;
+    }
+    .map-popup-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #1a1208; margin-bottom: 3px; }
+    .map-popup-type { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7a6e5f; margin-bottom: 6px; }
+    .map-popup-location { font-size: 0.9rem; color: #7a6e5f; margin-bottom: 8px; }
+    .map-popup-link { font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: #8a6a1a; text-decoration: none; }
+    .map-popup-link:hover { color: #c9a84c; }
+
+    /* Mobile toggle */
+    .mobile-toggle { display: none; }
+    @media (max-width: 700px) {
+      .map-layout { grid-template-columns: 1fr; height: auto; }
+      .map-sidebar { height: 260px; border-right: none; border-bottom: 1px solid var(--border-gold); }
+      #map { height: 420px; }
+      .mobile-toggle {
+        display: flex;
+        gap: 0;
+        background: var(--bg-2);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: calc(var(--nav-h) + 52px);
+        z-index: 99;
+      }
+      .mt-btn {
+        flex: 1;
+        padding: 10px;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s;
+        background: var(--bg-card);
+        color: var(--muted);
+      }
+      .mt-btn.active { background: var(--accent); color: var(--ebony); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="index.html">Isaac <em>Lach</em></a>
+  <ul class="nav-links">
+    <li>
+      <a href="index.html">Isaac ▾</a>
+      <div class="nav-drop">
+        <a href="index.html#stats">At a Glance</a>
+        <a href="index.html#journey">Musical Journey</a>
+        <a href="index.html#highlights">Recordings</a>
+        <a href="index.html#academics">Academics</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Admissions ▾</a>
+      <div class="nav-drop">
+        <a href="schools.html">School Analysis</a>
+        <a href="map.html">School Map</a>
+        <a href="scholarships.html">Scholarships</a>
+        <a href="competitions.html">Competitions</a>
+        <a href="repertoire.html">Repertoire</a>
+        <a href="testprep.html">Test Prep</a>
+      </div>
+    </li>
+    <a class="nav-cta" href="index.html#contact">Contact Us</a>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav-mobile" id="mobileMenu">
+  <div class="nav-mobile-group">
+    <div class="nav-mobile-label">Isaac</div>
+    <a href="index.html#stats">At a Glance</a>
+    <a href="index.html#journey">Musical Journey</a>
+    <a href="index.html#highlights">Recordings</a>
+    <a href="index.html#academics">Academics</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="nav-mobile-group">
+    <div class="nav-mobile-label">Admissions</div>
+    <a href="schools.html">School Analysis</a>
+    <a href="map.html">School Map</a>
+    <a href="scholarships.html">Scholarships</a>
+    <a href="competitions.html">Competitions</a>
+    <a href="repertoire.html">Repertoire</a>
+    <a href="testprep.html">Test Prep</a>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="ph-label">Interactive Map</div>
+    <h1 class="ph-title">Piano Program <em>Map</em></h1>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filterBar">
+  <span class="filter-label">Region:</span>
+  <button class="filter-btn active" data-filter="region" data-value="all">All</button>
+  <button class="filter-btn" data-filter="region" data-value="midwest">Midwest</button>
+  <button class="filter-btn" data-filter="region" data-value="southeast">Southeast</button>
+  <button class="filter-btn" data-filter="region" data-value="west">West Coast</button>
+  <button class="filter-btn" data-filter="region" data-value="northeast">Northeast</button>
+  <div class="filter-sep"></div>
+  <span class="filter-label">Type:</span>
+  <button class="filter-btn active" data-filter="type" data-value="all">All</button>
+  <button class="filter-btn" data-filter="type" data-value="conservatory">Conservatory</button>
+  <button class="filter-btn" data-filter="type" data-value="university">University</button>
+</div>
+
+<!-- MOBILE TOGGLE -->
+<div class="mobile-toggle" id="mobileToggle">
+  <button class="mt-btn active" data-view="list">List</button>
+  <button class="mt-btn" data-view="map">Map</button>
+</div>
+
+<!-- MAP LAYOUT -->
+<div class="map-layout">
+  <div class="map-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-count"><span id="visibleCount">14</span> Schools</span>
+    </div>
+    <div id="sidebarList"></div>
+  </div>
+  <div id="map"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const schools = [
+  // Midwest
+  { id:'umkc',    name:'UMKC Conservatory',            city:'Kansas City, MO', region:'midwest',   type:'conservatory', lat:39.0352, lng:-94.5789, url:'schools.html#umkc' },
+  { id:'ku',      name:'University of Kansas',          city:'Lawrence, KS',    region:'midwest',   type:'university',   lat:38.9543, lng:-95.2558, url:'schools.html#ku' },
+  { id:'mizzou',  name:'University of Missouri',        city:'Columbia, MO',    region:'midwest',   type:'university',   lat:38.9404, lng:-92.3277, url:'schools.html#mizzou' },
+  { id:'slu',     name:'St. Louis University',          city:'St. Louis, MO',   region:'midwest',   type:'university',   lat:38.6365, lng:-90.2342, url:'schools.html#slu' },
+  { id:'oberlin', name:'Oberlin Conservatory',          city:'Oberlin, OH',     region:'midwest',   type:'conservatory', lat:41.2931, lng:-82.2174, url:'schools.html#oberlin' },
+  { id:'esm',     name:'Eastman School of Music',       city:'Rochester, NY',   region:'northeast', type:'conservatory', lat:43.1566, lng:-77.6088, url:'schools.html#eastman' },
+  { id:'juilliard',name:'Juilliard School',             city:'New York, NY',    region:'northeast', type:'conservatory', lat:40.7739, lng:-73.9840, url:'schools.html#juilliard' },
+  { id:'nec',     name:'New England Conservatory',      city:'Boston, MA',      region:'northeast', type:'conservatory', lat:42.3415, lng:-71.0852, url:'schools.html#nec' },
+  { id:'curtis',  name:'Curtis Institute of Music',     city:'Philadelphia, PA',region:'northeast', type:'conservatory', lat:39.9526, lng:-75.1652, url:'schools.html#curtis' },
+  { id:'peabody', name:'Peabody Conservatory (JHU)',    city:'Baltimore, MD',   region:'northeast', type:'conservatory', lat:39.3148, lng:-76.6186, url:'schools.html#peabody' },
+  { id:'frost',   name:'University of Miami (Frost)',   city:'Coral Gables, FL',region:'southeast', type:'conservatory', lat:25.7261, lng:-80.2726, url:'schools.html#frost' },
+  { id:'fsu',     name:'Florida State University',      city:'Tallahassee, FL', region:'southeast', type:'university',   lat:30.4418, lng:-84.2985, url:'schools.html#fsu' },
+  { id:'usc',     name:'USC Thornton',                  city:'Los Angeles, CA', region:'west',      type:'conservatory', lat:34.0224, lng:-118.2851,url:'schools.html#usc' },
+  { id:'colburn', name:'Colburn School',                city:'Los Angeles, CA', region:'west',      type:'conservatory', lat:34.0551, lng:-118.2522,url:'schools.html#colburn' },
+];
+
+const typeColors = {
+  conservatory: '#8b3030',
+  university:   '#005090',
+};
+
+let activeRegion = 'all';
+let activeType = 'all';
+let markers = {};
+let map;
+
+function getVisible() {
+  return schools.filter(s =>
+    (activeRegion === 'all' || s.region === activeRegion) &&
+    (activeType === 'all' || s.type === activeType)
+  );
+}
+
+function makeSvgIcon(type) {
+  const color = typeColors[type] || '#7a6e5f';
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='28' height='36' viewBox='0 0 28 36'><path d='M14 0C6.268 0 0 6.268 0 14c0 9.333 14 22 14 22S28 23.333 28 14C28 6.268 21.732 0 14 0z' fill='${color}'/><circle cx='14' cy='14' r='6' fill='white'/></svg>`;
+  return L.divIcon({ html: svg, iconSize: [28,36], iconAnchor: [14,36], popupAnchor: [0,-36], className: '' });
+}
+
+function buildSidebar(visible) {
+  const list = document.getElementById('sidebarList');
+  document.getElementById('visibleCount').textContent = visible.length;
+  const regions = { midwest:'Missouri / Kansas & Midwest', northeast:'Northeast', southeast:'Southeast / Florida', west:'West Coast' };
+  const byRegion = {};
+  visible.forEach(s => { (byRegion[s.region] = byRegion[s.region] || []).push(s); });
+  list.innerHTML = '';
+  Object.entries(byRegion).forEach(([r, arr]) => {
+    const hd = document.createElement('div');
+    hd.className = 'sidebar-region';
+    hd.textContent = regions[r] || r;
+    list.appendChild(hd);
+    arr.forEach(s => {
+      const item = document.createElement('div');
+      item.className = 'sidebar-item';
+      item.id = 'si-' + s.id;
+      item.innerHTML = `<div class='si-dot' style='background:${typeColors[s.type]}'></div><div><div class='si-name'>${s.name}</div><div class='si-meta'>${s.city} · ${s.type}</div></div>`;
+      item.addEventListener('click', () => {
+        map.flyTo([s.lat, s.lng], 12, { duration: 1.2 });
+        markers[s.id]?.openPopup();
+        document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+        item.classList.add('active');
+      });
+      list.appendChild(item);
+    });
+  });
+}
+
+function updateMap() {
+  const visible = getVisible();
+  // Remove all layers
+  Object.values(markers).forEach(m => map.removeLayer(m));
+  markers = {};
+  visible.forEach(s => {
+    const m = L.marker([s.lat, s.lng], { icon: makeSvgIcon(s.type) })
+      .addTo(map)
+      .bindPopup(`<div class='map-popup-name'>${s.name}</div><div class='map-popup-type'>${s.type}</div><div class='map-popup-location'>${s.city}</div><a class='map-popup-link' href='${s.url}'>View Details →</a>`);
+    markers[s.id] = m;
+  });
+  buildSidebar(visible);
+}
+
+// Init map
+map = L.map('map', { zoomControl: true }).setView([38.5, -95], 4);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap contributors © CARTO',
+  maxZoom: 18
+}).addTo(map);
+
+updateMap();
+
+// Filters
+document.getElementById('filterBar').addEventListener('click', (e) => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  const { filter, value } = btn.dataset;
+  document.querySelectorAll(`.filter-btn[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (filter === 'region') activeRegion = value;
+  if (filter === 'type')   activeType   = value;
+  updateMap();
+  // fly to region center
+  const centers = { midwest:[39.5,-94], southeast:[28,-82], west:[34,-118], northeast:[41,-74] };
+  if (value !== 'all' && centers[value]) map.flyTo(centers[value], 6, { duration: 1.2 });
+  else map.flyTo([38.5,-95], 4, { duration: 1.2 });
+});
+
+// Nav
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+document.addEventListener('click', (e) => { if (!burger.contains(e.target) && !mobileMenu.contains(e.target)) mobileMenu.classList.remove('open'); });
+
+// Mobile toggle
+document.getElementById('mobileToggle')?.addEventListener('click', (e) => {
+  const btn = e.target.closest('.mt-btn');
+  if (!btn) return;
+  document.querySelectorAll('.mt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const sidebar = document.getElementById('sidebar');
+  const mapEl = document.getElementById('map');
+  if (btn.dataset.view === 'map') { sidebar.style.display = 'none'; mapEl.style.display = 'block'; map.invalidateSize(); }
+  else { sidebar.style.display = ''; mapEl.style.display = 'none'; }
+});
+</script>
+</body>
+</html>
