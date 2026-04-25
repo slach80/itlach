@@ -255,6 +255,7 @@
       justify-content: center;
       opacity: 0.06;
       pointer-events: none;
+      overflow: hidden;
     }
     .key-w {
       width: 36px;
@@ -431,6 +432,15 @@
       transition: border-color 0.2s, color 0.2s;
     }
     .btn-s:hover { border-color: var(--accent); color: var(--accent); }
+    /* btn-s used outside dark hero needs dark text */
+    #highlights .btn-s, #academics .btn-s, #schools .btn-s, #contact .btn-s {
+      color: var(--accent-dark);
+      border-color: var(--border-gold);
+    }
+    #highlights .btn-s:hover, #academics .btn-s:hover, #schools .btn-s:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
 
     /* Hero scroll hint */
     .hero-scroll {
@@ -1046,6 +1056,44 @@
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.3s; }
     .reveal-d4 { transition-delay: 0.4s; }
+
+    /* ─── MOBILE ─────────────────────────────────── */
+    @media (max-width: 480px) {
+      .hero-name { font-size: 3.2rem; }
+      .hero-chips { gap: 6px; }
+      .chip { font-size: 0.58rem; padding: 4px 10px; }
+      .hero-actions { flex-direction: column; gap: 10px; }
+      .btn-p, .btn-s { text-align: center; width: 100%; padding: 14px 20px; }
+
+      .sec-title { font-size: 1.75rem; }
+      .sec-sub { margin-bottom: 28px; }
+
+      /* stats: 2-col on tiny screens */
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(4) { border-right: none; }
+
+      /* journey single col */
+      .journey-grid { gap: 0 14px; }
+      .journey-card { padding: 18px 16px; }
+
+      /* recordings full-width */
+      .highlights-grid { grid-template-columns: 1fr; }
+
+      /* region cards */
+      .regions-grid { grid-template-columns: 1fr; }
+
+      /* contact */
+      .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+      .contact-form { padding: 22px 18px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      /* hero staff hidden on small screens */
+      .hero-staff { display: none; }
+      .hero-scroll { display: none; }
+    }
   </style>
 </head>
 <body>

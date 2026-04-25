@@ -99,6 +99,12 @@
     .reveal-d1 { transition-delay: 0.08s; }
     .reveal-d2 { transition-delay: 0.16s; }
 
+    @media (max-width: 480px) {
+      .comp-grid { grid-template-columns: 1fr; }
+      .comp-list-item { grid-template-columns: 1fr; }
+      .cli-badge { width: fit-content; }
+    }
+
     footer { background: var(--ebony); padding: 32px clamp(20px,5vw,60px); text-align: center; }
     .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; font-style: italic; color: var(--ivory); margin-bottom: 8px; }
     .footer-logo em { color: var(--accent); }

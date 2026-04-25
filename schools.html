@@ -107,6 +107,15 @@
     .reveal-d2 { transition-delay: 0.16s; }
     .reveal-d3 { transition-delay: 0.24s; }
 
+    @media (max-width: 480px) {
+      .filter-bar { gap: 8px; }
+      .filter-btn { font-size: 0.58rem; padding: 5px 10px; }
+      .filter-sep { display: none; }
+      .filter-label { width: 100%; }
+      .schools-grid { grid-template-columns: 1fr; }
+      .school-card-hd { flex-wrap: wrap; }
+    }
+
     footer { background: var(--ebony); padding: 32px clamp(20px,5vw,60px); text-align: center; }
     .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; font-style: italic; color: var(--ivory); margin-bottom: 8px; }
     .footer-logo em { color: var(--accent); }

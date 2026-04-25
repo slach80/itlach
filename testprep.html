@@ -122,6 +122,16 @@
     .reveal-d2 { transition-delay: 0.16s; }
     .reveal-d3 { transition-delay: 0.24s; }
 
+    @media (max-width: 600px) {
+      .tracker-wrap { padding: 20px 18px; }
+      .tracker-form { flex-direction: column; }
+      .tracker-form select,
+      .tracker-form input { width: 100%; }
+      .tracker-add { width: 100%; padding: 12px; }
+      .score-table { font-size: 0.85rem; }
+      .score-table th, .score-table td { padding: 8px 6px; }
+    }
+
     footer { background: var(--ebony); padding: 32px clamp(20px,5vw,60px); text-align: center; }
     .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; font-style: italic; color: var(--ivory); margin-bottom: 8px; }
     .footer-logo em { color: var(--accent); }
