@@ -82,6 +82,13 @@
     .comp-result { font-size: 0.95rem; font-weight: 400; color: var(--text); line-height: 1.55; }
     .comp-result em { font-style: italic; color: var(--muted); }
 
+    /* TYPE SECTION DIVIDERS */
+    .comp-type-section { margin-bottom: 44px; }
+    .comp-type-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .comp-type-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: var(--accent-dark); white-space: nowrap; }
+    .comp-type-rule { flex: 1; height: 1px; background: var(--border-gold); }
+    .comp-type-count { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; font-weight: 400; letter-spacing: 0.10em; color: var(--muted); white-space: nowrap; }
+
     /* REGIONAL COMPETITION LIST */
     .comp-list { display: flex; flex-direction: column; gap: 14px; }
     .comp-list-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r); padding: 18px 22px; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; box-shadow: 0 1px 8px rgba(0,0,0,0.04); transition: box-shadow 0.2s; }
@@ -175,153 +182,208 @@
   <div style="margin-bottom:52px;">
     <div class="section-label">Past Results</div>
     <h2 class="section-title">Competition &amp; Festival <em>History</em></h2>
-    <p class="section-sub">Isaac's record of formal competitions, festivals, and adjudicated performances.</p>
-    <div class="comp-grid">
+    <p class="section-sub">Isaac's record of formal competitions, festivals, and adjudicated performances — 2021 through present.</p>
 
-      <div class="comp-card past reveal">
-        <div class="comp-year">2025</div>
-        <div class="comp-name">Charleston International Piano Competition</div>
-        <div class="comp-org">Charleston International Music Competition · Age 11 Division</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Third Prize</strong> · Sonata in F Minor: Allegro di molto · <a href="https://youtu.be/EZGh_hQYHJU" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+    <!-- COMPETITIONS -->
+    <div class="comp-type-section">
+      <div class="comp-type-header">
+        <span class="comp-type-label">Competitions</span>
+        <div class="comp-type-rule"></div>
+        <span class="comp-type-count">Ranked, adjudicated events with prizes</span>
       </div>
+      <div class="comp-grid">
 
-      <div class="comp-card past reveal reveal-d1">
-        <div class="comp-year">December 2025</div>
-        <div class="comp-name">KCMTA Musical Merriment</div>
-        <div class="comp-org">Kansas City Music Teachers Association · Kemper Museum of Contemporary Art</div>
-        <div class="comp-result">
-          Solo: <em>The Spirit of the Season</em> (Christmas Carol Fantasy) · <a href="https://www.youtube.com/watch?v=JBPAxTrevUI" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch →</a><br>
-          Duet w/ Kingsley: <em>Deck the Hall</em> Fantasy &amp; Kemper Duet · <a href="https://www.youtube.com/watch?v=aMs1dTntJjs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch →</a>
+        <div class="comp-card past reveal">
+          <div class="comp-year">2025</div>
+          <div class="comp-name">Charleston International Piano Competition</div>
+          <div class="comp-org">Charleston International Music Competition · Age 11 Division</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Third Prize</strong> · Sonata in F Minor: Allegro di molto · <a href="https://youtu.be/EZGh_hQYHJU" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
         </div>
-      </div>
 
-      <div class="comp-card past reveal reveal-d2">
-        <div class="comp-year">2025</div>
-        <div class="comp-name">NWMO Sonatina-Sonata Festival</div>
-        <div class="comp-org">Northwest Missouri State University · 2nd Annual · Ages 5th–8th Grade</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Outstanding Performance — Age Group Prize</strong> · Mozart Sonata K. 545, Mvt. I · <a href="https://www.youtube.com/watch?v=dMuBggHA0hs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
-      </div>
+        <div class="comp-card past reveal reveal-d1">
+          <div class="comp-year">2025</div>
+          <div class="comp-name">NWMO Sonatina-Sonata Festival</div>
+          <div class="comp-org">Northwest Missouri State University · 2nd Annual · Ages 5th–8th Grade</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Outstanding Performance — Age Group Prize</strong> · Mozart Sonata K. 545, Mvt. I · <a href="https://www.youtube.com/watch?v=dMuBggHA0hs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
 
-      <div class="comp-card past reveal reveal-d1">
-        <div class="comp-year">2025</div>
-        <div class="comp-name">Spring Recital — Bellus Music Studio</div>
-        <div class="comp-org">Bellus Music Studio · Eva Peng</div>
-        <div class="comp-result">Full 9-minute solo recital performance · <a href="https://www.youtube.com/watch?v=ZPhBRjsL7fw" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
-      </div>
+        <div class="comp-card past reveal reveal-d2">
+          <div class="comp-year">October 2025</div>
+          <div class="comp-name">Bach Festival at NWMO</div>
+          <div class="comp-org">Northwest Missouri State University</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Honorable Mention</strong> · Solo performance</div>
+        </div>
 
-      <div class="comp-card past reveal">
-        <div class="comp-year">April 2024</div>
-        <div class="comp-name">End-of-Year Studio Recital</div>
-        <div class="comp-org">Bellus Music Studio · Kansas City Piano, Overland Park KS</div>
-        <div class="comp-result">4 solo pieces · Superior and high marks across all festivals &amp; competitions that year</div>
-      </div>
+        <div class="comp-card past reveal">
+          <div class="comp-year">January 2024</div>
+          <div class="comp-name">NWMO Sonatina-Sonata Festival</div>
+          <div class="comp-org">Northwest Missouri State University · Honor Recital · 1st Annual</div>
+          <div class="comp-result">First mini masterclass + stage performance · Performed Haydn · <a href="https://www.youtube.com/watch?v=ekDuLvPUotc" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
 
-      <div class="comp-card past reveal reveal-d1">
-        <div class="comp-year">December 2023</div>
-        <div class="comp-name">KCMTA Recital — Kemper Museum</div>
-        <div class="comp-org">Kansas City Music Teachers Association · Kemper Museum Atrium · Bellus Music Studio</div>
-        <div class="comp-result">Piano solo · <a href="https://youtu.be/8kRHSD7jY44" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch →</a> &nbsp;·&nbsp; Piano trio · <a href="https://youtu.be/sBkiCNt1M2g" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch →</a></div>
-      </div>
+        <div class="comp-card past reveal reveal-d1">
+          <div class="comp-year">2024</div>
+          <div class="comp-name">MMTA District Honor Audition</div>
+          <div class="comp-org">Missouri Music Teachers Association · Kansas City Piano, Overland Park KS</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">High Marks — Solo &amp; Duet</strong> · Advanced to State (first time competing duet at state)</div>
+        </div>
 
-      <div class="comp-card past reveal reveal-d2">
-        <div class="comp-year">December 12, 2024</div>
-        <div class="comp-name">KCMTA Christmas Recital</div>
-        <div class="comp-org">Kansas City Music Teachers Association · Kemper Museum of Contemporary Art</div>
-        <div class="comp-result">CPE Bach Sonatina in F Minor · Beethoven Sonatina Mvt. 2 · Tchaikovsky Waltz of the Flowers (duet) · <em>Still, Still, Still</em> · Christmas Fantasia (Jennifer Linn) · <a href="https://youtu.be/O7JjoZR2t_4" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
-      </div>
+        <div class="comp-card past reveal reveal-d2">
+          <div class="comp-year">2024</div>
+          <div class="comp-name">MMTA State Competition</div>
+          <div class="comp-org">Missouri Music Teachers Association · University of Missouri, Columbia</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Rating 1 (Highest)</strong> — Solo · <strong style="color:var(--accent-dark);">Honorable Mention</strong> — Duet · <a href="https://youtu.be/E61TxSC4j70" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
 
-      <div class="comp-card past reveal reveal-d1">
-        <div class="comp-year">October 2025</div>
-        <div class="comp-name">KCMTA Fall Festival</div>
-        <div class="comp-org">Kansas City Music Teachers Association</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Highest Honors</strong> · Certificate + ribbon · Teacher: Eva Peng</div>
-      </div>
+        <div class="comp-card past reveal">
+          <div class="comp-year">November 2023</div>
+          <div class="comp-name">MMTA State Competition</div>
+          <div class="comp-org">Missouri Music Teachers Association · University of Missouri, Columbia</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Rating 1 (Highest) — Solo</strong></div>
+        </div>
 
-      <div class="comp-card past reveal reveal-d1">
-        <div class="comp-year">October 2025</div>
-        <div class="comp-name">Bach Festival</div>
-        <div class="comp-org">Northwest Missouri State University</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Honorable Mention</strong> · Solo performance</div>
-      </div>
+        <div class="comp-card past reveal reveal-d1">
+          <div class="comp-year">September 25, 2022</div>
+          <div class="comp-name">MMTA District Audition</div>
+          <div class="comp-org">Missouri Music Teachers Association · Kansas City Piano</div>
+          <div class="comp-result">Two pieces · <strong style="color:var(--accent-dark);">Advanced to State</strong> · First formal adjudicated audition · <a href="https://www.youtube.com/watch?v=wgLD8gvsVrs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
 
-      <div class="comp-card past reveal">
-        <div class="comp-year">2023</div>
-        <div class="comp-name">NFMC Federation Music Festival</div>
-        <div class="comp-org">National Federation of Music Clubs · Kansas City District One</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Superior Rating</strong> · Adjudicated solo performance</div>
-      </div>
+        <div class="comp-card past reveal reveal-d2">
+          <div class="comp-year">November 2022</div>
+          <div class="comp-name">MMTA State Competition</div>
+          <div class="comp-org">Missouri Music Teachers Association · Piano Solo</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Honorable Mention</strong> · Highly competitive field</div>
+        </div>
 
-      <div class="comp-card past reveal reveal-d1">
-        <div class="comp-year">2024</div>
-        <div class="comp-name">NFMC Federation Music Festival</div>
-        <div class="comp-org">National Federation of Music Clubs · Kansas City District One</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Superior Rating</strong> · Adjudicated solo performance · <a href="https://www.youtube.com/watch?v=VOLE6iQaRDs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
-      </div>
+        <div class="comp-card past reveal">
+          <div class="comp-year">November 2021</div>
+          <div class="comp-name">MMTA State Competition</div>
+          <div class="comp-org">Missouri Music Teachers Association · Piano Solo Class 3B · University of Missouri, Columbia</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Honorable Mention</strong> · Nov 11–15, 2021 · Teacher: Eva Peng · <a href="https://youtu.be/O7VBMvvXc_w" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
 
-      <div class="comp-card past reveal">
-        <div class="comp-year">January 2024</div>
-        <div class="comp-name">NWMO Sonatina-Sonata Festival</div>
-        <div class="comp-org">Northwest Missouri State University · Honor Recital · 1st Annual</div>
-        <div class="comp-result">First mini masterclass + stage performance · Performed Haydn · <a href="https://www.youtube.com/watch?v=ekDuLvPUotc" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
       </div>
-
-      <div class="comp-card past reveal reveal-d1">
-        <div class="comp-year">2024</div>
-        <div class="comp-name">MMTA District Honor Audition</div>
-        <div class="comp-org">Missouri Music Teachers Association · Kansas City Piano, Overland Park KS</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">High Marks — Solo &amp; Duet</strong> · Advanced to State (first time competing duet at state)</div>
-      </div>
-
-      <div class="comp-card past reveal reveal-d2">
-        <div class="comp-year">2024</div>
-        <div class="comp-name">MMTA State Competition</div>
-        <div class="comp-org">Missouri Music Teachers Association · University of Missouri, Columbia</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Rating 1 (Highest)</strong> — Solo · <strong style="color:var(--accent-dark);">Honorable Mention</strong> — Duet · <a href="https://youtu.be/E61TxSC4j70" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
-      </div>
-
-      <div class="comp-card past reveal">
-        <div class="comp-year">September 2023</div>
-        <div class="comp-name">FMTA KC Fall Honor Recital</div>
-        <div class="comp-org">Federated Music Teachers Association · Kansas City</div>
-        <div class="comp-result">Haydn Sonata in C Major, Finale, Hob.XVI/7 · Burgmüller <em>The Farewell</em>, Op. 100 No. 12</div>
-      </div>
-
-      <div class="comp-card past reveal reveal-d1">
-        <div class="comp-year">November 2023</div>
-        <div class="comp-name">MMTA State Competition</div>
-        <div class="comp-org">Missouri Music Teachers Association · University of Missouri, Columbia</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Rating 1 (Highest) — Solo</strong></div>
-      </div>
-
-      <div class="comp-card past reveal reveal-d2">
-        <div class="comp-year">September 25, 2022</div>
-        <div class="comp-name">MMTA District Audition</div>
-        <div class="comp-org">Missouri Music Teachers Association · Kansas City Piano</div>
-        <div class="comp-result">Two pieces · <strong style="color:var(--accent-dark);">Advanced to State</strong> · First formal adjudicated audition · <a href="https://www.youtube.com/watch?v=wgLD8gvsVrs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
-      </div>
-
-      <div class="comp-card past reveal reveal-d2">
-        <div class="comp-year">November 2022</div>
-        <div class="comp-name">MMTA State Competition</div>
-        <div class="comp-org">Missouri Music Teachers Association · Piano Solo</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Honorable Mention</strong> · Highly competitive field</div>
-      </div>
-
-      <div class="comp-card past reveal">
-        <div class="comp-year">April 28, 2022</div>
-        <div class="comp-name">NFMC Federation Music Festival</div>
-        <div class="comp-org">National Federation of Music Clubs · Kansas City District One</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Superior Rating</strong> · Solo &amp; Junior Festival certificates</div>
-      </div>
-
-      <div class="comp-card past reveal reveal-d1">
-        <div class="comp-year">November 2021</div>
-        <div class="comp-name">MMTA State Competition</div>
-        <div class="comp-org">Missouri Music Teachers Association · Piano Solo Class 3B · University of Missouri, Columbia</div>
-        <div class="comp-result"><strong style="color:var(--accent-dark);">Honorable Mention</strong> · Nov 11–15, 2021 · Teacher: Eva Peng · <a href="https://youtu.be/O7VBMvvXc_w" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
-      </div>
-
     </div>
+
+    <!-- FESTIVALS & ADJUDICATIONS -->
+    <div class="comp-type-section">
+      <div class="comp-type-header">
+        <span class="comp-type-label">Festivals &amp; Adjudications</span>
+        <div class="comp-type-rule"></div>
+        <span class="comp-type-count">Rated performances with formal evaluation</span>
+      </div>
+      <div class="comp-grid">
+
+        <div class="comp-card past reveal">
+          <div class="comp-year">October 2025</div>
+          <div class="comp-name">KCMTA Fall Festival</div>
+          <div class="comp-org">Kansas City Music Teachers Association</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Highest Honors</strong> · Certificate + ribbon · Teacher: Eva Peng</div>
+        </div>
+
+        <div class="comp-card past reveal reveal-d1">
+          <div class="comp-year">April 6, 2025</div>
+          <div class="comp-name">NFMC Federation Music Festival</div>
+          <div class="comp-org">National Federation of Music Clubs · Kansas City District One</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Superior Rating</strong> · <em>Woman and Child on the Balcony</em> (Catherine Rollin) · <a href="https://www.youtube.com/watch?v=ZKM7GOqlY_E" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
+
+        <div class="comp-card past reveal reveal-d2">
+          <div class="comp-year">2024</div>
+          <div class="comp-name">NFMC Federation Music Festival</div>
+          <div class="comp-org">National Federation of Music Clubs · Kansas City District One</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Superior Rating</strong> · Adjudicated solo performance · <a href="https://www.youtube.com/watch?v=VOLE6iQaRDs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
+
+        <div class="comp-card past reveal">
+          <div class="comp-year">2023</div>
+          <div class="comp-name">NFMC Federation Music Festival</div>
+          <div class="comp-org">National Federation of Music Clubs · Kansas City District One</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Superior Rating</strong> · Adjudicated solo performance</div>
+        </div>
+
+        <div class="comp-card past reveal reveal-d1">
+          <div class="comp-year">April 28, 2022</div>
+          <div class="comp-name">NFMC Federation Music Festival</div>
+          <div class="comp-org">National Federation of Music Clubs · Kansas City District One</div>
+          <div class="comp-result"><strong style="color:var(--accent-dark);">Superior Rating</strong> · Solo &amp; Junior Festival certificates</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RECITALS & PERFORMANCES -->
+    <div class="comp-type-section">
+      <div class="comp-type-header">
+        <span class="comp-type-label">Recitals &amp; Performances</span>
+        <div class="comp-type-rule"></div>
+        <span class="comp-type-count">Public performances and honor recitals</span>
+      </div>
+      <div class="comp-grid">
+
+        <div class="comp-card past reveal">
+          <div class="comp-year">December 2025</div>
+          <div class="comp-name">KCMTA Musical Merriment</div>
+          <div class="comp-org">Kansas City Music Teachers Association · Kemper Museum of Contemporary Art</div>
+          <div class="comp-result">
+            Solo: <em>The Spirit of the Season</em> (Christmas Carol Fantasy) · <a href="https://www.youtube.com/watch?v=JBPAxTrevUI" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch →</a><br>
+            Duet w/ Kingsley: <em>Deck the Hall</em> Fantasy &amp; Kemper Duet · <a href="https://www.youtube.com/watch?v=aMs1dTntJjs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch →</a>
+          </div>
+        </div>
+
+        <div class="comp-card past reveal reveal-d1">
+          <div class="comp-year">Summer 2025</div>
+          <div class="comp-name">Summer Piano Recital — Bellus Music Studio</div>
+          <div class="comp-org">Bellus Music Studio · Eva Peng</div>
+          <div class="comp-result">Solo recital performance · <a href="https://www.youtube.com/watch?v=OzRK-LEIrio" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
+
+        <div class="comp-card past reveal reveal-d2">
+          <div class="comp-year">2025</div>
+          <div class="comp-name">Spring Recital — Bellus Music Studio</div>
+          <div class="comp-org">Bellus Music Studio · Eva Peng</div>
+          <div class="comp-result">Full 9-minute solo recital performance · <a href="https://www.youtube.com/watch?v=ZPhBRjsL7fw" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
+
+        <div class="comp-card past reveal">
+          <div class="comp-year">December 12, 2024</div>
+          <div class="comp-name">KCMTA Christmas Recital</div>
+          <div class="comp-org">Kansas City Music Teachers Association · Kemper Museum of Contemporary Art</div>
+          <div class="comp-result">CPE Bach Sonatina in F Minor · Beethoven Sonatina Mvt. 2 · Tchaikovsky Waltz of the Flowers (duet) · <em>Still, Still, Still</em> · Christmas Fantasia (Jennifer Linn) · <a href="https://youtu.be/O7JjoZR2t_4" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
+
+        <div class="comp-card past reveal reveal-d1">
+          <div class="comp-year">December 7, 2024</div>
+          <div class="comp-name">Bellus Studio Christmas Recital</div>
+          <div class="comp-org">Bellus Music Studio · McCrite Plaza, Kansas City</div>
+          <div class="comp-result"><em>Christmas Fantasia</em> (Jennifer Linn) · <em>Still, Still, Still</em> (Austrian Carol) · <a href="https://www.youtube.com/watch?v=8nqB8cMT5bs" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch recording →</a></div>
+        </div>
+
+        <div class="comp-card past reveal reveal-d2">
+          <div class="comp-year">April 2024</div>
+          <div class="comp-name">End-of-Year Studio Recital</div>
+          <div class="comp-org">Bellus Music Studio · Kansas City Piano, Overland Park KS</div>
+          <div class="comp-result">4 solo pieces · Superior and high marks across all festivals &amp; competitions that year</div>
+        </div>
+
+        <div class="comp-card past reveal">
+          <div class="comp-year">September 2023</div>
+          <div class="comp-name">FMTA KC Fall Honor Recital</div>
+          <div class="comp-org">Federated Music Teachers Association · Kansas City</div>
+          <div class="comp-result">Haydn Sonata in C Major, Finale, Hob.XVI/7 · Burgmüller <em>The Farewell</em>, Op. 100 No. 12</div>
+        </div>
+
+        <div class="comp-card past reveal reveal-d1">
+          <div class="comp-year">December 2023</div>
+          <div class="comp-name">KCMTA Recital — Kemper Museum</div>
+          <div class="comp-org">Kansas City Music Teachers Association · Kemper Museum Atrium · Bellus Music Studio</div>
+          <div class="comp-result">Piano solo · <a href="https://youtu.be/8kRHSD7jY44" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch →</a> &nbsp;·&nbsp; Piano trio · <a href="https://youtu.be/sBkiCNt1M2g" target="_blank" rel="noopener" style="color:var(--accent-dark);">Watch →</a></div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   <!-- TARGET COMPETITIONS -->
